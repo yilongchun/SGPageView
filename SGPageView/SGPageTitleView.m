@@ -267,7 +267,14 @@ static CGFloat const SGPageTitleViewTextFont = 16;
     
     // 3、标题文字缩放属性
     if (self.isOpenTitleTextZoom) {
-        button.transform = CGAffineTransformMakeScale(1 + self.titleTextScaling, 1 + self.titleTextScaling);
+        [self.btnMArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIButton *btn = obj;
+            if (button.tag == btn.tag) {
+                btn.transform = CGAffineTransformMakeScale(1 + self.titleTextScaling, 1 + self.titleTextScaling);
+            }else{
+                btn.transform = CGAffineTransformMakeScale(1, 1);
+            }
+        }];
     }
     
     // 4、改变指示器的位置
